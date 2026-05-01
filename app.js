@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // conexión BD
 const connectDB = require('./routes/db');
@@ -39,3 +40,7 @@ app.get('/registro', (req, res) => {
 app.listen(3000, () => {
   console.log('Servidor en http://localhost:3000');
 });
+
+// Rutas para productos
+const productosRoutes = require('./routes/productos');
+app.use('/productos', productosRoutes);

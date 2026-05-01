@@ -1,0 +1,8 @@
+.img-producto {
+ 
+  width: 10;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+
+}

@@ -8,7 +8,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-// middlewares
+
+// ✅ primero los parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,13 +29,27 @@ app.use(authRoutes);
 app.use('/usuarios', usuariosRoutes);
 
 // rutas vistas
-app.get('/menu', (req, res) => {
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+//ruta para el menú, solo usuarios autenticados pueden acceder
+const { autenticado } = require('./validations/authValidator');
+
+app.get('/menu', autenticado, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'menu.html'));
 });
 
-app.get('/registro', (req, res) => {
+
+
+//Solo administradores pueden acceder a esta ruta
+
+const { soloAdmin } = require('./validations/authValidator');
+
+app.get('/registro', soloAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'registrar.html'));
 });
+
 
 // servidor
 app.listen(3000, () => {

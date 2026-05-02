@@ -2,25 +2,35 @@ const Usuario = require('../models/Usuario');
 
 exports.login = async (req, res) => {
   const { usuario, password } = req.body;
-console.log("Datos recibidos en login:", { usuario, password }); // 👈 VERIFICA LOS DATOS RECIBIDOS
+
   try {
-    // buscar usuario con esos datos EXACTOS
-    const user = await Usuario.findOne({ usuario, password });
-  console.log("usuario encontrado:", user);
-    if (!user) {
-      console.log("Usuario no encontrado o contraseña incorrecta");
-      return res.json({
+    const user = await Usuario.findOne({ usuario });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({
         success: false,
         message: 'Usuario o contraseña incorrectos'
       });
     }
 
-    // login correcto
-   // req.session.usuario = user;
+    // ✅ GUARDAR EN SESIÓN
+    req.session.usuario = {
+      id: user._id,
+      usuario: user.usuario,
+      rol: user.rol
+    };
 
-    res.json({ success: true });
+    // ✅ RESPONDER CON ROL
+    res.status(200).json({
+      success: true,
+      rol: user.rol
+    });
 
   } catch (error) {
-    res.status(500).json({ success: false });
+    res.status(500).json({
+      success: false,
+      message: 'Error en el servidor'
+    });
   }
+
 };

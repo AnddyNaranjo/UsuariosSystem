@@ -52,8 +52,11 @@ const cargarProductos = async () => {
   });
 };
 
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  limpiarErrores();
 
   const formData = new FormData();
   formData.append("nombre", nombre.value);
@@ -62,14 +65,25 @@ form.addEventListener("submit", async (e) => {
   formData.append("descripcion", descripcion.value);
   formData.append("imagen", imagen.files[0]);
 
-  await fetch("/productos", {
+  const res = await fetch("/productos", {
     method: "POST",
     body: formData,
   });
 
+  const data = await res.json();
+
+  if (!res.ok) {
+    mostrarErrores(data.errores);
+    return;
+  }
+  // Cerrar el modal
+      const modalElement = document.getElementById('registrarProducto');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      modalInstance.hide();
   form.reset();
   cargarProductos();
 });
+
 
 
 
@@ -117,5 +131,31 @@ const eliminar = async (id) => {
   await fetch(`/productos/${id}`, { method: "DELETE" });
   cargarProductos();
 };
+
+
+//Mostrar errores de validación
+function mostrarErrores(errores) {
+  errores.forEach(error => {
+    const input = document.querySelector(
+      `[name="${error.path}"]`
+    );
+
+    if (input) {
+      input.classList.add("is-invalid");
+      input.nextElementSibling.textContent = error.msg;
+    }
+  });
+}
+
+
+function limpiarErrores() {
+  document.querySelectorAll(".form-control").forEach(input => {
+    input.classList.remove("is-invalid");
+  });
+
+  document.querySelectorAll(".invalid-feedback").forEach(div => {
+    div.textContent = "";
+  });
+}
 
 cargarProductos();

@@ -4,6 +4,9 @@ const router = express.Router();
 const Usuario = require('../models/Usuario');
 
 const usuariosController = require('../controllers/usuariosController');
+const {validarUsuarioRegistro}= require('../validations/usuariosValidator');
+const validarErrores = require('../validations/validarErrores');
+
 
 
 // Obtener todos los usuarios
@@ -18,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 //Crear nuevo usuario
-router.post('/', usuariosController.createUsuario);
+router.post('/', validarUsuarioRegistro, validarErrores,usuariosController.createUsuario);
 
 
 module.exports = router;

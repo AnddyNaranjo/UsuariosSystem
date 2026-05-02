@@ -6,7 +6,7 @@ const ProductoSchema = new mongoose.Schema(
     precio: Number,
     stock: Number,
     descripcion: String,
-    imagen: String // ← ruta de la imagen
+    imagen: String 
   },
   {
     collection: 'productos',

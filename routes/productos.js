@@ -6,7 +6,7 @@ const upload = require('../config/upload');
 const { validarProducto, validarId } = require('../validations/productoValidator');
 const validarErrores = require('../validations/validarErrores');
 
-// CREATE con imagen ✅
+// CREATE con imagen
 router.post(
   '/',
   upload.single('imagen'),
@@ -18,7 +18,7 @@ router.post(
 // READ
 router.get('/', controller.getProductos);
 
-// UPDATE ✅
+// UPDATE 
 router.put(
   '/:id',
   validarId,
@@ -27,7 +27,7 @@ router.put(
   controller.updateProducto
 );
 
-// DELETE ✅
+// DELETE 
 router.delete(
   '/:id',
   validarId,

@@ -13,14 +13,14 @@ exports.login = async (req, res) => {
       });
     }
 
-    // ✅ GUARDAR EN SESIÓN
+    // GUARDAR EN SESIÓN
     req.session.usuario = {
       id: user._id,
       usuario: user.usuario,
       rol: user.rol
     };
 
-    // ✅ RESPONDER CON ROL
+    // RESPONDER CON ROL
     res.status(200).json({
       success: true,
       rol: user.rol

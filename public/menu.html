@@ -1,194 +1,225 @@
-
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
 
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Productos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <body class="container-fluid">
-<div class="mb-3">
-  <nav class="navbar sticky-top bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Listado de Productos</a>
-    <form class="d-flex justify-content-start">
-    <button class="btn btn-outline-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#registrarProducto">
-      Nuevo Producto
-    </button>
-    <button class="btn btn-outline-secondary me-2" type="button" id="btnRegistrarUsuario" onclick="window.location.href = '/registro';">Registrar Usuario</button>
-    <button class="btn btn-outline-danger" type="button" onclick="window.location.href='/logout'">Cerrar Sesion</button>
-  </form>
-  </div>
-</nav>
-</div>
+</head>
 
-    <div class="row">
-      <div class="col">
-        <div class="table-responsive">
-          <table class="table table-dark table-striped table-bordered align-middle">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Descripción</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tablaProductos">
-              <!-- Filas dinámicas -->
-            </tbody>
-          </table>
-        </div>
+<body class="container-fluid">
+  <div class="mb-3">
+    <nav class="navbar sticky-top bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Listado de Productos</a>
+        <form class="d-flex justify-content-start">
+          <button class="btn btn-outline-success me-2" type="button" data-bs-toggle="modal"
+            data-bs-target="#registrarProducto">
+            Nuevo Producto
+          </button>
+          <button class="btn btn-outline-secondary me-2" type="button" id="btnRegistrarUsuario"
+            onclick="window.location.href = '/registro';">Registrar Usuario</button>
+          <button class="btn btn-outline-danger me-2" type="button" onclick="window.location.href='/logout'">Cerrar
+            Sesion</button>
+        </form>
       </div>
-    </div>
-
-    <!-- MODAL MODIFICAR PRODUCTO -->
-<div class="modal fade" id="modalProducto" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title">Modificar Producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <input type="hidden" id="editId">
-
-        <div class="mb-2">
-          <input type="text" id="editNombre" class="form-control" placeholder="Nombre">
-        </div>
-
-        <div class="mb-2">
-          <input type="number" step="0.01" id="editPrecio" class="form-control" placeholder="Precio">
-        </div>
-
-        <div class="mb-2">
-          <input type="number" id="editStock" class="form-control" placeholder="Stock">
-        </div>
-
-        <div class="mb-2">
-          <input type="text" id="editDescripcion" class="form-control" placeholder="Descripción">
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" onclick="guardarCambios()">Guardar</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Modal Registro de Productos-->
-<div class="modal fade" id="registrarProducto" tabindex="-1" aria-labelledby="registrarProductoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="registrarProductoLabel">Registrar Producto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-<form id="productoForm" enctype="multipart/form-data" class="g-2">
-
-  <div class="modal-body">
-
-    <div class="mb-3">
-      <input
-        type="text"
-        id="nombre"
-        name="nombre"
-        class="form-control"
-        placeholder="Nombre">
-      <div class="invalid-feedback"></div>
-    </div>
-
-    <div class="row">
-
-      <div class="col mb-3">
-        <input
-          type="number"
-          step="0.01"
-          id="precio"
-          name="precio"
-          class="form-control"
-          placeholder="Precio">
-        <div class="invalid-feedback"></div>
-      </div>
-
-      <div class="col mb-3">
-        <input
-          type="number"
-          id="stock"
-          name="stock"
-          class="form-control"
-          placeholder="Stock">
-        <div class="invalid-feedback"></div>
-      </div>
-
-    </div>
-
-    <div class="mb-3">
-      <input
-        type="text"
-        id="descripcion"
-        name="descripcion"
-        class="form-control"
-        placeholder="Descripción">
-      <div class="invalid-feedback"></div>
-    </div>
-
-    <div class="mb-3">
-      <input
-        type="file"
-        id="imagen"
-        name="imagen"
-        class="form-control"
-        accept="image/*">
-      <div class="invalid-feedback"></div>
-    </div>
-
+    </nav>
   </div>
 
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      data-bs-dismiss="modal">
-      Cancelar
-    </button>
-
-    <button
-      type="submit"
-      class="btn btn-success">
-      Guardar Producto
-    </button>
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered align-middle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Descripción</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaProductos">
+            <!-- Filas dinámicas -->
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
+  <!-- MODAL MODIFICAR PRODUCTO -->
+  <div class="modal fade" id="modalProducto" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Modificar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="editId">
+
+          <div class="mb-2">
+            <input type="text" id="editNombre" class="form-control" placeholder="Nombre">
+          </div>
+
+          <div class="mb-2">
+            <input type="number" step="0.01" id="editPrecio" class="form-control" placeholder="Precio">
+          </div>
+
+          <div class="mb-2">
+            <input type="number" id="editStock" class="form-control" placeholder="Stock">
+          </div>
+
+          <div class="mb-2">
+            <input type="text" id="editDescripcion" class="form-control" placeholder="Descripción">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" onclick="guardarCambios()">Guardar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal Registro de Productos-->
+  <div class="modal fade" id="registrarProducto" tabindex="-1" aria-labelledby="registrarProductoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="registrarProductoLabel">Registrar Producto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="productoForm" enctype="multipart/form-data" class="g-2">
+
+          <div class="modal-body">
+
+            <div class="mb-3">
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="row">
+
+              <div class="col mb-3">
+                <input type="number" step="0.01" id="precio" name="precio" class="form-control" placeholder="Precio">
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col mb-3">
+                <input type="number" id="stock" name="stock" class="form-control" placeholder="Stock">
+                <div class="invalid-feedback"></div>
+              </div>
+
+            </div>
+
+            <div class="mb-3">
+              <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripción">
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+              <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+              <div class="invalid-feedback"></div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+
+            <button type="submit" class="btn btn-success">
+              Guardar Producto
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<button
+  id="btnChat"
+  type="button"
+  class="btn btn-outline-primary position-relative"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#chatOffcanvas">
+  💬 Chat
+  <span
+    id="chatBadge"
+    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+    0
+  </span>
+</button>
+
+<!-- ===============================
+     CHAT OFFCANVAS (tipo Facebook)
+     =============================== -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="chatOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">💬 Chat</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body d-flex flex-column">
+    <div
+      id="mensajesChat"
+      class="flex-grow-1 border rounded p-2 mb-2"
+      style="overflow-y:auto">
+    </div>
+
+
+<form id="chatForm" class="d-flex gap-2" onsubmit="return false;">
+  <input
+    type="text"
+    id="mensajeInput"
+    class="form-control"
+    placeholder="Escribe un mensaje">
+
+  <button
+    type="button"
+    id="btnEnviarMensaje"
+    class="btn btn-primary">
+    Enviar
+  </button>
 </form>
-    </div>
+
   </div>
 </div>
 
-<!-- Modal -->
+
+   <!-- Notificaciones -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="chatToast" class="toast" role="alert">
+    <div class="toast-header">
+      <strong class="me-auto">Nuevo mensaje</strong>
+      <small>ahora</small>
+    </div>
+    <div class="toast-body" id="toastBody"></div>
+  </div>
+</div>
+
+  <!-- Modal -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-  
-</script>
+  <!-- JS al final -->
+  <script src="js/productos.js"></script>
+  <script src="js/registroUsusarios.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+<script src="/js/menu-chat.js"></script>
+</body>
 
-    <!-- JS al final -->
-    <script src="js/productos.js"></script>
-    <script src="js/registroUsusarios.js"></script>
-  </body>
 </html>

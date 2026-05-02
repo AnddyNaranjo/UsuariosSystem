@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("/me");
     const data = await res.json();
 
-    // ❌ si no es admin, ocultar el botón
+    // si no es admin, ocultar el botón
     if (!data.ok || data.rol !== "admin") {
       btnRegistrar.style.display = "none";
     }

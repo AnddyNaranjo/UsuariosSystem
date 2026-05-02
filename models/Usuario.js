@@ -7,7 +7,8 @@ const usuarioSchema = new mongoose.Schema({
   usuario: String,
   nombre: String
 }, {
-  collection: 'usuarios' // 👈 nombre EXACTO de tu colección
+  collection: 'usuarios',
+ versionKey: false
 });
 
 module.exports = mongoose.model('Usuario', usuarioSchema);

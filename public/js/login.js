@@ -20,20 +20,20 @@ form.addEventListener('submit', async (e) => {
 
   const data = await res.json();
 
-  // 🔴 VALIDACIONES
+  // VALIDACIONES
   if (res.status === 400) {
     mostrarErrores(data.errores);
     return;
   }
 
-  // 🔴 LOGIN INCORRECTO → ALERTA GENERAL
+  // LOGIN INCORRECTO → ALERTA GENERAL
   if (res.status === 401) {
     mostrarAlerta(data.message);
     marcarInputsLogin();
     return;
   }
 
-  // ✅ LOGIN OK
+  // LOGIN OK
   if (data.success) {
   if (data.rol === "admin") {
     window.location.href = "/menu";

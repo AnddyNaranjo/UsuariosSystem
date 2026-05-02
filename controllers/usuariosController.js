@@ -2,7 +2,7 @@ const Usuario = require('../models/Usuario');
 
 exports.createUsuario = async (req, res) => {
   const { nombre, usuario, email, password, rol } = req.body;
- console.log("Datos recibidos en registro:", req.body); // 👈 VERIFICA LOS DATOS RECIBIDOS
+ console.log("Datos recibidos en registro:", req.body); // VERIFICA LOS DATOS RECIBIDOS
   try {
     const nuevoUsuario = new Usuario({
       nombre,

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const authController = require('../controllers/authController');
 
-// ✅ IMPORTAR VALIDACIONES
+// IMPORTAR VALIDACIONES
 const { validarUsuario } = require('../validations/usuariosValidator');
 const validarErrores = require('../validations/validarErrores');
 
@@ -15,7 +15,7 @@ router.post(
 );
 
 
-// ✅ RUTA /me (para obtener rol)
+// RUTA /me (para obtener rol)
 router.get('/me', (req, res) => {
   if (!req.session.usuario) {
     return res.status(401).json({ ok: false });

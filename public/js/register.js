@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     limpiarErrores();
 
-    // ✅ Obtener valores
+    // Obtener valores
     const nombre = document.getElementById('nombre').value;
     const usuario = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // ✅ Registro correcto
+      //Registro correcto
       alert('Usuario registrado correctamente');
       window.location.href = '/menu';
 

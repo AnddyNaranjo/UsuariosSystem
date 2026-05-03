@@ -76,8 +76,9 @@ https://github.com/AnddyNaranjo/UsuariosSystem.git
 ### 1️⃣ Clonar el repositorio
 ```bash
 git clone <https://github.com/AnddyNaranjo/UsuariosSystem.git>
-
+```
 ### 2️⃣ Instalar dependencias
+```bash
 npm install
 ```
 ### 3️⃣ Configurar la base de datos
@@ -86,7 +87,7 @@ Tener MongoDB en ejecución
 Configurar la conexión en el archivo db.js
 
 ### Estructura de mi base de datos
-
+```bash
 Servidor MongoDB: admin
 │
 └── Base de Datos: inventario
@@ -95,7 +96,7 @@ Servidor MongoDB: admin
         │            usuarios
         │
         └── Documentos (JSON)
-
+```
 ### 5️⃣ Acceder al sistema
 
 Abrir el navegador en:

@@ -1,14 +1,19 @@
 const Usuario = require('../models/Usuario');
+const bcrypt = require('bcrypt');
 
 exports.createUsuario = async (req, res) => {
   const { nombre, usuario, email, password, rol } = req.body;
- console.log("Datos recibidos en registro:", req.body); // VERIFICA LOS DATOS RECIBIDOS
+
   try {
+    // HASHEAR CONTRASEÑA
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
+
     const nuevoUsuario = new Usuario({
       nombre,
       usuario,
       email,
-      password,
+      password: passwordHash, 
       rol
     });
 

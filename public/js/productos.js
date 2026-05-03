@@ -89,7 +89,6 @@ form.addEventListener("submit", async (e) => {
 
 
 function modificarProducto(id) {
-  console.log("Modificar producto con ID:", id);
   fetch(`/productos`)
     .then(res => res.json())
     .then(productos => {
@@ -107,14 +106,12 @@ function modificarProducto(id) {
 
 function guardarCambios() {
   const id = document.getElementById("editId").value;
-
   const producto = {
     nombre: editNombre.value,
     precio: editPrecio.value,
     stock: editStock.value,
     descripcion: editDescripcion.value
   };
-
   fetch(`/productos/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

@@ -6,6 +6,9 @@ const connectDB = require('./routes/db');
 const { soloAdmin, autenticado } = require('./validations/authValidator');
 const productosRoutes = require('./routes/productos');
 
+const initAdmin = require('./controllers/usuarioAutomatico');
+
+
 // HTTP + SOCKET.IO
 const http = require('http');
 const { Server } = require('socket.io');
@@ -73,10 +76,6 @@ io.on('connection', (socket) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// =========================
-// DB
-// =========================
-connectDB();
 
 // =========================
 // RUTAS
@@ -108,8 +107,13 @@ app.get('/registro', soloAdmin, (req, res) => {
 });
 
 // =========================
-// INICIAR SERVIDOR ✅
+// INICIAR SERVIDOR Y CONECTAR DB
 // =========================
-server.listen(3000,'0.0.0.0', () => {
-  console.log('Servidor en http://localhost:3000');
-});
+connectDB()
+  .then(() => {
+    initAdmin();
+    server.listen(3000, '0.0.0.0', () => {
+      console.log('Servidor corriendo');
+    });
+  })
+  .catch(err => console.error(err));

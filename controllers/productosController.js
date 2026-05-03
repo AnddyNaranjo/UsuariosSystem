@@ -33,11 +33,34 @@ exports.getProductos = async (req, res) => {
 
 // UPDATE
 exports.updateProducto = async (req, res) => {
+
   try {
-    await Producto.findByIdAndUpdate(req.params.id, req.body);
-    res.json({ success: true });
-  } catch {
-    res.status(500).json({ success: false });
+    const productoActualizado = await Producto.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!productoActualizado) {
+      return res.status(404).json({
+        success: false,
+        message: "Producto no encontrado"
+      });
+    }
+
+    res.json({
+      success: true,
+      producto: productoActualizado
+    });
+
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message
+    });
   }
 };
 

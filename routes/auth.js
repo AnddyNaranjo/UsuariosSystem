@@ -3,6 +3,8 @@ const router = express.Router();
 
 const authController = require('../controllers/authController');
 
+const Usuario = require('../models/Usuario'); 
+
 // IMPORTAR VALIDACIONES
 const { validarUsuario } = require('../validations/usuariosValidator');
 const validarErrores = require('../validations/validarErrores');
@@ -37,5 +39,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
 
 module.exports = router;

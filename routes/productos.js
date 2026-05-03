@@ -21,17 +21,12 @@ router.get('/', controller.getProductos);
 // UPDATE 
 router.put(
   '/:id',
-  validarId,
-  validarProducto,
-  validarErrores,
   controller.updateProducto
 );
 
 // DELETE 
 router.delete(
   '/:id',
-  validarId,
-  validarErrores,
   controller.deleteProducto
 );
 

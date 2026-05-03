@@ -76,10 +76,10 @@ https://github.com/AnddyNaranjo/UsuariosSystem.git
 ### 1️⃣ Clonar el repositorio
 ```bash
 git clone <https://github.com/AnddyNaranjo/UsuariosSystem.git>
-``
+
 ### 2️⃣ Instalar dependencias
 npm install
-
+```
 ### 3️⃣ Configurar la base de datos
 
 Tener MongoDB en ejecución

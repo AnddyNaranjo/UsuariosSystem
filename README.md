@@ -66,9 +66,50 @@ El sistema incluye seguridad básica mediante **bcrypt para el cifrado de contra
 
 ---
 
+## URL
+https://github.com/AnddyNaranjo/UsuariosSystem.git
+
+---
+
 ## ▶️ Instrucciones Básicas de Uso
 
 ### 1️⃣ Clonar el repositorio
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone <https://github.com/AnddyNaranjo/UsuariosSystem.git>
 ``
+### 2️⃣ Instalar dependencias
+npm install
+
+### 3️⃣ Configurar la base de datos
+
+Tener MongoDB en ejecución
+Configurar la conexión en el archivo db.js
+
+### Estructura de mi base de datos
+
+Servidor MongoDB: admin
+│
+└── Base de Datos: inventario
+    │
+    └── Colecciones: productos
+        │            usuarios
+        │
+        └── Documentos (JSON)
+
+### 5️⃣ Acceder al sistema
+
+Abrir el navegador en:
+
+* http://localhost:3000
+
+Se crea un Usuario administrador automático (primera vez):
+
+* Usuario: admin
+* Contraseña: admin123
+
+📝 Observaciones
+
+- El administrador se crea automáticamente solo si la base de datos está vacía.
+- Después de crear el primer admin, el registro queda limitado solo a usuarios con rol administrador.
+- Las contraseñas nunca se almacenan en texto plano.
+
